@@ -1,12 +1,12 @@
 node default {
-  file { '/root/README':
-    content => 'This is readme',
-    owner => 'root',
-    }
  }
 
 node 'master.puppet.vm' {
   include role::master_server
+  file { '/root/README':
+     ensure => file,
+     content => $fqdn,
+   }
  }
 
 node /^web/ {
